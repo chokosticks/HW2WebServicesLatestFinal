@@ -2,7 +2,11 @@ import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
@@ -56,6 +60,34 @@ public class FlightItinearies {
 
 
         return itineraries;
+    }
+
+
+    @WebMethod
+    public List<Flight> getFlightPrices(String date)
+    {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        try
+        {
+            d =df.parse(date);
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        List<Flight> resultList = new ArrayList<Flight>();
+        for(Airport a: airports.getAirports())
+        {
+            for(Flight f: a.getFlights())
+            {
+                if(df.format(d).equals(df.format(f.getDepartureDate())))
+                {
+                    resultList.add(f);
+                    System.out.println(f.toString());
+                }
+            }
+        }
+        return resultList;
     }
 
     public void initDFSVisit(){

@@ -1,4 +1,6 @@
 import javax.xml.ws.WebServiceProvider;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -67,10 +69,10 @@ public class Flight{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         sb.append("From: "+this.getDepartureCity()+"\n").
         append("To: "+this.getDestinationCity()+"\n").
-        append("Price: "+this.getPrice()+" Departure date: "+this.getDepartureDate()+"\n").
+        append("Price: "+this.getPrice()+" \nDeparture date: "+df.format(this.getDepartureDate())+"\n").
         append("Available seats: "+this.getAvailableSeats()+"\n");
 
         return sb.toString();

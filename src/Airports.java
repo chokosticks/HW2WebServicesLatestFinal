@@ -1,6 +1,9 @@
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
 import javax.xml.ws.WebServiceProvider;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,15 +19,29 @@ public class Airports {
 
     public Airports(){
 
-        Flight fi0 = new Flight("Stockholm", "Oslo", new Date(2016-02-01), 1200, 120);
-        Flight fi1 = new Flight("Stockholm", "Helsingfors", new Date(2016-12-05), 1100, 12);
-        Flight fi2 = new Flight("Stockholm", "Rejkavik", new Date(2016-12-05), 1100, 12);
-        Flight fi3 = new Flight("Oslo", "Moskva", new Date(2016-12-03), 1300, 132);
-        Flight fi4 = new Flight("Oslo", "Helsingfors", new Date(2016-12-05), 1100, 12);
-        Flight fi5 = new Flight("Moskva", "Paris", new Date(2016-12-05), 1100, 12);
-        Flight fi6 = new Flight("Helsingfors", "Moskva", new Date(2016-12-05), 1100, 12);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+        Flight fi0 = null;
+        Flight fi1 = null;
+        Flight fi2 = null;
+        Flight fi3 = null;
+        Flight fi4 = null;
+        Flight fi5 = null;
+        Flight fi6 = null;
+        try
+        {
+            fi0 = new Flight("Stockholm", "Oslo", df.parse("2016-02-01"), 1200, 120);
+            fi1 = new Flight("Stockholm", "Helsingfors", df.parse("2016-12-05"), 1100, 12);
+            fi2 = new Flight("Stockholm", "Rejkavik", df.parse("2016-12-05"), 1100, 12);
+            fi3 = new Flight("Oslo", "Moskva", df.parse("2016-12-03"), 1300, 132);
+            fi4 = new Flight("Oslo", "Helsingfors", df.parse("2016-12-05"), 1100, 12);
+            fi5 = new Flight("Moskva", "Paris", df.parse("2016-12-05"), 1100, 12);
+            fi6 = new Flight("Helsingfors", "Moskva", df.parse("2016-12-05"), 1100, 12);
 
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
         ArrayList<Flight> initFlights0 = new ArrayList<Flight>();
         ArrayList<Flight> initFlights1 = new ArrayList<Flight>();
         ArrayList<Flight> initFlights2 = new ArrayList<Flight>();
