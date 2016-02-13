@@ -15,18 +15,28 @@ public class FlightItineariesClient {
         try {
 
             FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
+            List<Flight> result = port.getFlightPrices("2016-12-05");
 
 
-            List<FlightItinerary> result = port.getFlightItinearies(args[0], args[1]);
+//            List<FlightItinerary> result = port.getFlightItinearies(args[0], args[1]);
+//
+//            if(result.isEmpty()) {
+//                System.out.println("No itinerary found");
+//            }else{
+//
+//                for(FlightItinerary fi: result) {
+//                    for(Flight fl: fi.getFlights()){
+//                        System.out.println(fl.toString());
+//                    }
+//                }
+//            }
 
             if(result.isEmpty()) {
                 System.out.println("No itinerary found");
             }else{
 
-                for(FlightItinerary fi: result) {
-                    for(Flight fl: fi.getFlights()){
-                        System.out.println(fl.toString());
-                    }
+                for(Flight fi: result) {
+                        System.out.println(fi.toString());
                 }
             }
 

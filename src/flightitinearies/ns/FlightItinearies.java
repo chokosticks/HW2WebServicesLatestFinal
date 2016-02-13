@@ -43,4 +43,67 @@ public interface FlightItinearies {
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
 
+    /**
+     * 
+     */
+    @WebMethod
+    @RequestWrapper(localName = "initDFSVisit", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.InitDFSVisit")
+    @ResponseWrapper(localName = "initDFSVisitResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.InitDFSVisitResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/initDFSVisitRequest", output = "ns.flightItinearies/FlightItinearies/initDFSVisitResponse")
+    public void initDFSVisit();
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod(operationName = "DFS")
+    @RequestWrapper(localName = "DFS", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFS")
+    @ResponseWrapper(localName = "DFSResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/DFSRequest", output = "ns.flightItinearies/FlightItinearies/DFSResponse")
+    public void dfs(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Airport arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        List<Flight> arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        Airport arg2);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod(operationName = "DFSRec")
+    @RequestWrapper(localName = "DFSRec", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSRec")
+    @ResponseWrapper(localName = "DFSRecResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSRecResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/DFSRecRequest", output = "ns.flightItinearies/FlightItinearies/DFSRecResponse")
+    public void dfsRec(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Airport arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        List<Flight> arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        Airport arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        List<FlightItinerary> arg3);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<flightitinearies.ns.Flight>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getFlightPrices", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPrices")
+    @ResponseWrapper(localName = "getFlightPricesResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPricesResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/getFlightPricesRequest", output = "ns.flightItinearies/FlightItinearies/getFlightPricesResponse")
+    public List<Flight> getFlightPrices(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
 }

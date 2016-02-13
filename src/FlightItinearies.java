@@ -2,6 +2,7 @@ import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,24 @@ public class FlightItinearies {
         DFS(departureAirport, departureAirport.getFlights(), finalDestination);
 
         return itineraries;
+    }
+
+
+    @WebMethod
+    public List<Flight> getFlightPrices(String date)
+    {
+        List<Flight> resultList = new ArrayList<Flight>();
+        for(Airport a: airports.getAirports())
+        {
+            for(Flight f: a.getFlights())
+            {
+                if(f.getDepartureDate().compareTo(Date.valueOf(date)) == 0)
+                {
+                    resultList.add(f);
+                }
+            }
+        }
+        return resultList;
     }
 
     public void initDFSVisit(){
