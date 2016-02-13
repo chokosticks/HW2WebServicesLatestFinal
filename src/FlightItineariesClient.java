@@ -15,7 +15,7 @@ public class FlightItineariesClient {
         try {
 
             FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
-            List<Flight> result = port.getFlightPrices("2016-12-05");
+            List<Flight> result = port.getFlightPrices(args[0]);
 
 
 //            List<FlightItinerary> result = port.getFlightItinearies(args[0], args[1]);
