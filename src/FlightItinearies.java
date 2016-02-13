@@ -113,13 +113,8 @@ public class FlightItinearies {
                 for(Flight flight: airport.getFlights()){
                     System.out.println("flight: "+flight.getDepartureCity()+" -> "+flight.getDestinationCity());
                     stack.push(airports.getAirport(flight.getDestinationCity()));
-                    if(airport.getName().equals(flight.getDestinationCity()))
-                        stop = true;
                 }
             }
-//            if(airport.getName().equals(finalDestination.getName()))
-//                break;
-
         }
 
         while(!stack.isEmpty()){

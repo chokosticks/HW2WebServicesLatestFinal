@@ -27,9 +27,11 @@ public class ObjectFactory {
     private final static QName _DFSRecResponse_QNAME = new QName("ns.flightItinearies", "DFSRecResponse");
     private final static QName _GetFlightItineariesResponse_QNAME = new QName("ns.flightItinearies", "getFlightItineariesResponse");
     private final static QName _InitDFSVisit_QNAME = new QName("ns.flightItinearies", "initDFSVisit");
+    private final static QName _DFSIterative_QNAME = new QName("ns.flightItinearies", "DFSIterative");
     private final static QName _GetFlightItinearies_QNAME = new QName("ns.flightItinearies", "getFlightItinearies");
     private final static QName _GetFlightPricesResponse_QNAME = new QName("ns.flightItinearies", "getFlightPricesResponse");
     private final static QName _DFS_QNAME = new QName("ns.flightItinearies", "DFS");
+    private final static QName _DFSIterativeResponse_QNAME = new QName("ns.flightItinearies", "DFSIterativeResponse");
     private final static QName _DFSResponse_QNAME = new QName("ns.flightItinearies", "DFSResponse");
     private final static QName _InitDFSVisitResponse_QNAME = new QName("ns.flightItinearies", "initDFSVisitResponse");
     private final static QName _GetFlightPrices_QNAME = new QName("ns.flightItinearies", "getFlightPrices");
@@ -67,6 +69,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DFSIterative }
+     * 
+     */
+    public DFSIterative createDFSIterative() {
+        return new DFSIterative();
+    }
+
+    /**
      * Create an instance of {@link DFSRec }
      * 
      */
@@ -80,6 +90,14 @@ public class ObjectFactory {
      */
     public GetFlightPrices createGetFlightPrices() {
         return new GetFlightPrices();
+    }
+
+    /**
+     * Create an instance of {@link DFSIterativeResponse }
+     * 
+     */
+    public DFSIterativeResponse createDFSIterativeResponse() {
+        return new DFSIterativeResponse();
     }
 
     /**
@@ -174,6 +192,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DFSIterative }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFSIterative")
+    public JAXBElement<DFSIterative> createDFSIterative(DFSIterative value) {
+        return new JAXBElement<DFSIterative>(_DFSIterative_QNAME, DFSIterative.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightItinearies }{@code >}}
      * 
      */
@@ -198,6 +225,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFS")
     public JAXBElement<DFS> createDFS(DFS value) {
         return new JAXBElement<DFS>(_DFS_QNAME, DFS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DFSIterativeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFSIterativeResponse")
+    public JAXBElement<DFSIterativeResponse> createDFSIterativeResponse(DFSIterativeResponse value) {
+        return new JAXBElement<DFSIterativeResponse>(_DFSIterativeResponse_QNAME, DFSIterativeResponse.class, null, value);
     }
 
     /**
