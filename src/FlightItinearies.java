@@ -56,6 +56,12 @@ public class FlightItinearies {
 
 
     public void DFS(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination){
+        ArrayList<FlightItinerary> flightItinerary = new ArrayList<FlightItinerary>();
+        DFSRec(currentAirport, flights, finalDestination, flightItinerary);
+    }
+
+    public void DFSRec(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination, ArrayList<FlightItinerary> flightItinerary){
+
         visited.put(currentAirport, true);
 
         FlightItinerary fi = new FlightItinerary();
