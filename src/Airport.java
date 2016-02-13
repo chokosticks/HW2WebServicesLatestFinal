@@ -19,6 +19,7 @@ public class Airport {
         this.flights = flights;
     }
 
+
     public String getName() {
         return name;
     }

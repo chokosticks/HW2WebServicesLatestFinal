@@ -5,6 +5,7 @@ import javax.xml.ws.Endpoint;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 
 /**
@@ -39,9 +40,20 @@ public class FlightItinearies {
 
         initDFSVisit();
 
+        for(Flight flight: departureAirport.getFlights()){
+
+        }
 
 
-        DFS(departureAirport, departureAirport.getFlights(), finalDestination);
+
+
+        ArrayList<Airport> resultAirport = DFSIterative(departureAirport, finalDestination);
+
+        for(Airport airport: resultAirport){
+            System.out.println(airport.getName());
+        }
+
+
 
         return itineraries;
     }
@@ -52,6 +64,51 @@ public class FlightItinearies {
         }
     }
 
+    public ArrayList<Airport> DFSIterative(Airport currentAirport, Airport finalDestination){
+
+        Stack<Airport> stack = new Stack<Airport>();
+        ArrayList<Airport> result = new ArrayList<Airport>();
+        boolean stop = false;
+
+        stack.push(currentAirport);
+        while(!stack.isEmpty() && !stop){
+            Airport airport = stack.pop();
+            System.out.println(airport.getName());
+
+            if(!visited.get(airport)){
+                visited.put(airport, true);
+
+                for(Flight flight: airport.getFlights()){
+                    System.out.println("flight: "+flight.getDepartureCity()+" -> "+flight.getDestinationCity());
+                    stack.push(airports.getAirport(flight.getDestinationCity()));
+                    if(airport.getName().equals(flight.getDestinationCity()))
+                        stop = true;
+                }
+            }
+//            if(airport.getName().equals(finalDestination.getName()))
+//                break;
+
+        }
+
+        while(!stack.isEmpty()){
+            Airport temp = stack.pop();
+            result.add(temp);
+        }
+        result.add(currentAirport);
+
+        return result;
+    }
+
+
+//            1  procedure DFS-iterative(G,v):
+//            2      let S be a stack
+//            3      S.push(v)
+//            4      while S is not empty
+//            5            v = S.pop()
+//            6            if v is not labeled as discovered:
+//            7                label v as discovered
+//            8                for all edges from v to w in G.adjacentEdges(v) do
+//            9                    S.push(w)
 
 
 
@@ -63,17 +120,13 @@ public class FlightItinearies {
     public void DFSRec(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination, ArrayList<FlightItinerary> flightItinerary){
 
         visited.put(currentAirport, true);
-
         FlightItinerary fi = new FlightItinerary();
 
-
         for(Flight flight: currentAirport.getFlights()){
-
             Airport newCurrentAirport = airports.getAirport(flight.getDestinationCity());
             System.out.println("DFS-From: "+currentAirport.getName()+" DFS-To: "+ newCurrentAirport.getName());
 
             if(!visited.get(newCurrentAirport) && !newCurrentAirport.equals(finalDestination)) {
-                //resultFlightItinerary.addFlight(flight);
                 DFS(newCurrentAirport, newCurrentAirport.getFlights(), finalDestination);
 
             }else if(!visited.get(newCurrentAirport) && newCurrentAirport.equals(finalDestination)){
