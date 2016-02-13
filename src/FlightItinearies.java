@@ -27,10 +27,6 @@ public class FlightItinearies {
     @WebMethod
     public List<FlightItinerary> getFlightItinearies(String departureCity, String destinationCity){
 
-
-        airports.printAirports();
-
-
         ArrayList<FlightItinerary> result = new ArrayList<FlightItinerary>();
 
         if(!airports.airportExists(destinationCity) || !airports.airportExists(departureCity)) {
@@ -41,27 +37,11 @@ public class FlightItinearies {
         Airport finalDestination = airports.getAirport(destinationCity);
         Airport departureAirport = airports.getAirport(departureCity);
 
-//        initDFSVisit();
-//
-//        System.out.println("Departure: "+departureCity);
-//        for(Flight flight: departureAirport.getFlights()){
-//            System.out.println("[info]"+flight.getPrice());
-//        }
-//
-//        DFS(departureAirport, departureAirport.getFlights(), finalDestination);
+        initDFSVisit();
 
 
-//        ArrayList<Flight> resultSet = new ArrayList<Flight>();
-//        this.finalDestination = destinationCity;
-//        for(Flight fi: flights) {
-//            visited.put(fi.getDepartureCity(), false);
-//            if (fi.getDepartureCity().equals(departureCity) && fi.getDestinationCity().equals(destinationCity)) {
-//                resultSet.add(fi);
-//                return resultSet;
-//            }
-//        }
-//        DFS(adjacentMatrix, visited, departureCity);
-//        return resultSet;
+
+        DFS(departureAirport, departureAirport.getFlights(), finalDestination);
 
         return itineraries;
     }
@@ -77,43 +57,25 @@ public class FlightItinearies {
 
     public void DFS(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination){
         visited.put(currentAirport, true);
-        System.out.println("From: "+currentAirport.getName());
-        System.out.println(currentAirport.getFlights().size());
 
+        FlightItinerary fi = new FlightItinerary();
 
 
         for(Flight flight: currentAirport.getFlights()){
+
             Airport newCurrentAirport = airports.getAirport(flight.getDestinationCity());
-            System.out.println("FromMM: "+currentAirport.getName()+" -To: "+ newCurrentAirport.getName());
-            if(!visited.get(newCurrentAirport))
+            System.out.println("DFS-From: "+currentAirport.getName()+" DFS-To: "+ newCurrentAirport.getName());
+
+            if(!visited.get(newCurrentAirport) && !newCurrentAirport.equals(finalDestination)) {
+                //resultFlightItinerary.addFlight(flight);
                 DFS(newCurrentAirport, newCurrentAirport.getFlights(), finalDestination);
+
+            }else if(!visited.get(newCurrentAirport) && newCurrentAirport.equals(finalDestination)){
+                visited.put(currentAirport, false);
+                System.out.println("FOUNT IT "+newCurrentAirport.getName());
+
+            }
         }
-//
-////        visited.put(current, true);
-////        ArrayList<String> neighbours = adj.get(current);
-////
-////        for(String neighbour: neighbours) {
-////            Stack<String> temp = new Stack<String>();
-////            System.out.println("current: " + current + " neigbour: " + neighbour);
-////
-////            if(!adj.containsKey(neighbour))
-////                continue;
-////
-////            if (!visited.get(neighbour) && !neighbour.equals(finalDestination) && adj.containsKey(neighbour)) {
-////                temp.push(current);
-////                DFS(adj, visited, neighbour);
-////
-////            } else if(neighbour.equals(finalDestination)) {
-////                System.out.println("I FOUND:"+finalDestination);
-////                while(!temp.isEmpty()){
-////                    System.out.println(temp.pop());
-////
-////                }
-////                System.out.println("INside else if");
-////                visited.put(current, true);
-////
-////            }
-////        }
     }
 
 

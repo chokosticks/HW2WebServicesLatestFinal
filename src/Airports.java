@@ -76,7 +76,6 @@ public class Airports {
     public Airport getAirport(String airport){
         Airport temp = new Airport();
         for(Airport ap: airports){
-            System.out.println("FOR: airport= "+ap.getName());
             if(ap.getName().equalsIgnoreCase(airport)){
                 temp = ap;
             }
