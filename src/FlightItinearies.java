@@ -19,7 +19,7 @@ public class FlightItinearies {
     private static HashMap<Airport, Boolean> visited = new HashMap<Airport, Boolean>();
     private static Airports airports = new Airports();
     private static ArrayList<FlightItinerary> itineraryResult = new ArrayList<>();
-    private static ArrayList<FlightItinerary> bookedItinearies = new ArrayList<>();
+    private static ArrayList<Booking> bookedItinearies = new ArrayList<>();
 
     public FlightItinearies(){
         System.out.println("Flight Itinearies Service Started");
@@ -86,7 +86,7 @@ public class FlightItinearies {
     @WebMethod
     public String bookItinerary(int id, int creditCardNumber){
         if(id < itineraryResult.size()) {
-            bookedItinearies.add(itineraryResult.get(id));
+            bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
             return "Booking succeeded for flight itinerary id: " + id;
         }else
             return "No itinerary with that id exists";
@@ -94,7 +94,13 @@ public class FlightItinearies {
 
     @WebMethod
     public String issueTickets(int creditCardNumber){
-        return "Tickets Issued";
+        int itineraryID = 0;
+        for(Booking booking: bookedItinearies){
+            if(booking.getCreditCardNumber() == creditCardNumber){
+                return "Tickets issued for itinerary id: "+booking.getItinerary().getId();
+            }
+        }
+        return "No booking found for your creditcard number";
     }
 
     public void initDFSVisit(){
