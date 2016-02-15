@@ -11,7 +11,8 @@ public class FlightItinerary {
 
     private int id;
     private ArrayList<Flight> flights = new ArrayList<>();
-    private int price =0;
+    private int price = 0;
+    private double totalPrice = 0;
 
 
     public FlightItinerary(ArrayList<Flight> flights)
@@ -57,5 +58,16 @@ public class FlightItinerary {
     public int getPrice()
     {
         return price;
+    }
+
+    public double getTotalPrice(){
+        for(Flight flight: flights){
+            totalPrice += flight.getPrice();
+        }
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice){
+        this.totalPrice = totalPrice;
     }
 }

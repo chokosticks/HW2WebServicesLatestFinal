@@ -99,6 +99,33 @@ public interface FlightItinearies {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "bookItinerary", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.BookItinerary")
+    @ResponseWrapper(localName = "bookItineraryResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.BookItineraryResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/bookItineraryRequest", output = "ns.flightItinearies/FlightItinearies/bookItineraryResponse")
+    public String bookItinerary(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "issueTickets", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.IssueTickets")
+    @ResponseWrapper(localName = "issueTicketsResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.IssueTicketsResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/issueTicketsRequest", output = "ns.flightItinearies/FlightItinearies/issueTicketsResponse")
+    public String issueTickets();
+
+    /**
+     * 
      */
     @WebMethod
     @RequestWrapper(localName = "initDFSVisit", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.InitDFSVisit")

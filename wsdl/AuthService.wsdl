@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="AuthService"
+             targetNamespace="http://mynamespace/wsdl/AuthService"
+             xmlns:tns="http://mynamespace/wsdl/AuthService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+    <message name="AuthRequest">
+            <part name="userName" type="xsd:string"/>
+            <part name="password" type="xsd:string"/>
+    </message>
+    <message name="AuthResponse">
+            <part name="authToken" type="xsd:string"/>
+    </message>
+    <portType name="AuthPortType">
+            <operation name="authorize">
+                 <input message="tns:AuthRequest"/>
+                 <output message="tns:AuthResponse"/>
+            </operation>
+    </portType>
+    <binding name="AuthBinding" type="tns:AuthPortType">
+            <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+            <operation name="authorize">
+                 <soap:operation soapAction="authorize"/>
+                 <input>
+                        <soap:body
+                             encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                             namespace="urn:examples:authservice" use="literal"/>
+                 </input>
+                 <output>
+                        <soap:body
+                                encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                                namespace="urn:examples:authService" use="literal"/>
+                 </output>
+            </operation>
+    </binding>
+    <service name="AuthService">
+            <documentation> WSDL File for AuthService</documentation>
+            <port binding="tns:AuthBinding" name="AuthPort">
+                 <soap:address location="http://0.0.0.0:1338/authService"/>
+            </port>
+    </service>
+</definitions>

@@ -37,9 +37,8 @@ public class FlightItineariesClient {
                                 append("Available seats: "+fl.getAvailableSeats()+"\n");
 
                         System.out.println(sb.toString()+"\n");
-
                     }
-                    System.out.println("\n\n");
+                    System.out.println("Total price: "+fi.getTotalPrice()+"\n\n");
                 }
             }
 

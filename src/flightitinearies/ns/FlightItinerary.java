@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="flights" type="{ns.flightItinearies}flight" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="totalPrice" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,13 +33,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "flightItinerary", propOrder = {
     "flights",
-    "id"
+    "id",
+    "totalPrice"
 })
 public class FlightItinerary {
 
     @XmlElement(nillable = true)
     protected List<Flight> flights;
     protected int id;
+    protected double totalPrice;
 
     /**
      * Gets the value of the flights property.
@@ -83,6 +86,22 @@ public class FlightItinerary {
      */
     public void setId(int value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the totalPrice property.
+     * 
+     */
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    /**
+     * Sets the value of the totalPrice property.
+     * 
+     */
+    public void setTotalPrice(double value) {
+        this.totalPrice = value;
     }
 
 }

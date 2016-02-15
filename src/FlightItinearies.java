@@ -17,9 +17,9 @@ import java.util.*;
 public class FlightItinearies {
 
     private static HashMap<Airport, Boolean> visited = new HashMap<Airport, Boolean>();
-    private static ArrayList<FlightItinerary> itineraries = new ArrayList<FlightItinerary>();
     private static Airports airports = new Airports();
     private static ArrayList<FlightItinerary> itineraryResult = new ArrayList<>();
+    private static ArrayList<FlightItinerary> bookedItinearies = new ArrayList<>();
 
     public FlightItinearies(){
         System.out.println("Flight Itinearies Service Started");
@@ -42,7 +42,17 @@ public class FlightItinearies {
         initDFSVisit();
 
         result = DFS(departureAirport, finalDestination);
+        itineraryResult = result;
+        setItineraryId();
         return result;
+    }
+
+    private void setItineraryId(){
+        int id = 0;
+        for(FlightItinerary fi: itineraryResult){
+            fi.setId(id);
+            id++;
+        }
     }
 
 
@@ -71,6 +81,20 @@ public class FlightItinearies {
             }
         }
         return resultList;
+    }
+
+    @WebMethod
+    public String bookItinerary(int id, int creditCardNumber){
+        if(id < itineraryResult.size()) {
+            bookedItinearies.add(itineraryResult.get(id));
+            return "Booking succeeded for flight itinerary id: " + id;
+        }else
+            return "No itinerary with that id exists";
+    }
+
+    @WebMethod
+    public String issueTickets(int creditCardNumber){
+        return "Tickets Issued";
     }
 
     public void initDFSVisit(){
