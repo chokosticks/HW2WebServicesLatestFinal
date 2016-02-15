@@ -87,7 +87,11 @@ public class FlightItinearies {
     public String bookItinerary(int id, int creditCardNumber){
         if(id < itineraryResult.size()) {
             bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
-            return "Booking succeeded for flight itinerary id: " + id;
+            String from, to="";
+            Booking booking = bookedItinearies.get(bookedItinearies.size()-1);
+            from = booking.getItinerary().getFlights().get(0).getDepartureCity();
+            to = booking.getItinerary().getFlights().get(booking.getItinerary().getFlights().size()-1).getDestinationCity();
+            return "Booking succeeded for flight itinerary id: " + id + " from " + from + " to " + to + " for " + booking.getItinerary().getPrice();
         }else
             return "No itinerary with that id exists";
     }
@@ -97,7 +101,10 @@ public class FlightItinearies {
         int itineraryID = 0;
         for(Booking booking: bookedItinearies){
             if(booking.getCreditCardNumber() == creditCardNumber){
+
+
                 return "Tickets issued for itinerary id: "+booking.getItinerary().getId();
+
             }
         }
         return "No booking found for your creditcard number";
