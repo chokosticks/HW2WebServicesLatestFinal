@@ -11,6 +11,8 @@ import flightitinearies.ns.*;
 import flightitinearies.ns.Flight;
 import flightitinearies.ns.FlightItinearies;
 import flightitinearies.ns.FlightItinerary;
+import mynamespace.wsdl.authservice.AuthPortType;
+import mynamespace.wsdl.authservice.AuthService;
 
 
 public class FlightItineariesClient {
