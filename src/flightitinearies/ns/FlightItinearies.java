@@ -27,21 +27,21 @@ public interface FlightItinearies {
 
     /**
      * 
-     * @param arg2
      * @param arg1
      * @param arg0
+     * @return
+     *     returns java.util.List<flightitinearies.ns.FlightItinerary>
      */
     @WebMethod(operationName = "DFS")
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "DFS", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFS")
     @ResponseWrapper(localName = "DFSResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSResponse")
     @Action(input = "ns.flightItinearies/FlightItinearies/DFSRequest", output = "ns.flightItinearies/FlightItinearies/DFSResponse")
-    public void dfs(
+    public List<FlightItinerary> dfs(
         @WebParam(name = "arg0", targetNamespace = "")
         Airport arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        List<Flight> arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        Airport arg2);
+        Airport arg1);
 
     /**
      * 
@@ -58,9 +58,9 @@ public interface FlightItinearies {
         @WebParam(name = "arg0", targetNamespace = "")
         Airport arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        List<Flight> arg1,
+        Airport arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        Airport arg2,
+        List<Flight> arg2,
         @WebParam(name = "arg3", targetNamespace = "")
         List<FlightItinerary> arg3);
 
@@ -105,23 +105,5 @@ public interface FlightItinearies {
     @ResponseWrapper(localName = "initDFSVisitResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.InitDFSVisitResponse")
     @Action(input = "ns.flightItinearies/FlightItinearies/initDFSVisitRequest", output = "ns.flightItinearies/FlightItinearies/initDFSVisitResponse")
     public void initDFSVisit();
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.util.List<flightitinearies.ns.Airport>
-     */
-    @WebMethod(operationName = "DFSIterative")
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "DFSIterative", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSIterative")
-    @ResponseWrapper(localName = "DFSIterativeResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.DFSIterativeResponse")
-    @Action(input = "ns.flightItinearies/FlightItinearies/DFSIterativeRequest", output = "ns.flightItinearies/FlightItinearies/DFSIterativeResponse")
-    public List<Airport> dfsIterative(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Airport arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Airport arg1);
 
 }

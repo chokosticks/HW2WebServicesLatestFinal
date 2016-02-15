@@ -100,6 +100,16 @@ public class Airports {
         return temp;
     }
 
+    public Flight getFlight(Airport airport, String departureCity, String destinationCity){
+        Flight temp = new Flight();
+        for(Airport ap: airports ){
+            if(ap.equals(airport)){
+                temp = ap.getFlight(departureCity, destinationCity);
+            }
+        }
+        return temp;
+    }
+
     public void printAirports(){
         for(Airport airport: airports){
             System.out.println(airport.getName());

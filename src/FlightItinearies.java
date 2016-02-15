@@ -5,11 +5,7 @@ import javax.xml.ws.Endpoint;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 
 /**
@@ -23,6 +19,7 @@ public class FlightItinearies {
     private static HashMap<Airport, Boolean> visited = new HashMap<Airport, Boolean>();
     private static ArrayList<FlightItinerary> itineraries = new ArrayList<FlightItinerary>();
     private static Airports airports = new Airports();
+    private static ArrayList<FlightItinerary> itineraryResult = new ArrayList<>();
 
     public FlightItinearies(){
         System.out.println("Flight Itinearies Service Started");
@@ -44,22 +41,8 @@ public class FlightItinearies {
 
         initDFSVisit();
 
-        for(Flight flight: departureAirport.getFlights()){
-
-        }
-
-
-
-
-        ArrayList<Airport> resultAirport = DFSIterative(departureAirport, finalDestination);
-
-        for(Airport airport: resultAirport){
-            System.out.println(airport.getName());
-        }
-
-
-
-        return itineraries;
+        result = DFS(departureAirport, finalDestination);
+        return result;
     }
 
 
@@ -96,71 +79,38 @@ public class FlightItinearies {
         }
     }
 
-    public ArrayList<Airport> DFSIterative(Airport currentAirport, Airport finalDestination){
 
-        Stack<Airport> stack = new Stack<Airport>();
-        ArrayList<Airport> result = new ArrayList<Airport>();
-        boolean stop = false;
-
-        stack.push(currentAirport);
-        while(!stack.isEmpty() && !stop){
-            Airport airport = stack.pop();
-            System.out.println(airport.getName());
-
-            if(!visited.get(airport)){
-                visited.put(airport, true);
-
-                for(Flight flight: airport.getFlights()){
-                    System.out.println("flight: "+flight.getDepartureCity()+" -> "+flight.getDestinationCity());
-                    stack.push(airports.getAirport(flight.getDestinationCity()));
-                }
-            }
-        }
-
-        while(!stack.isEmpty()){
-            Airport temp = stack.pop();
-            result.add(temp);
-        }
-        result.add(currentAirport);
-
-        return result;
+    public ArrayList<FlightItinerary> DFS(Airport currentAirport, Airport finalDestination){
+        ArrayList<Flight> resultFlights = new ArrayList<>();
+        ArrayList<FlightItinerary> allItinerary = new ArrayList<>();
+        DFSRec(currentAirport, finalDestination, resultFlights, allItinerary);
+        return allItinerary;
     }
 
+    public void DFSRec(Airport currentAirport, Airport finalDestination, ArrayList<Flight> resultFlights, ArrayList<FlightItinerary> allItinerary){
 
-//            1  procedure DFS-iterative(G,v):
-//            2      let S be a stack
-//            3      S.push(v)
-//            4      while S is not empty
-//            5            v = S.pop()
-//            6            if v is not labeled as discovered:
-//            7                label v as discovered
-//            8                for all edges from v to w in G.adjacentEdges(v) do
-//            9                    S.push(w)
-
-
-
-    public void DFS(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination){
-        ArrayList<FlightItinerary> flightItinerary = new ArrayList<FlightItinerary>();
-        DFSRec(currentAirport, flights, finalDestination, flightItinerary);
-    }
-
-    public void DFSRec(Airport currentAirport, ArrayList<Flight> flights, Airport finalDestination, ArrayList<FlightItinerary> flightItinerary){
+        if(visited.get(currentAirport)){
+            return;
+        }
 
         visited.put(currentAirport, true);
-        FlightItinerary fi = new FlightItinerary();
+
+        if(currentAirport.equals(finalDestination)){
+            System.out.println("New Itinerary");
+            FlightItinerary newFlightItinerary = new FlightItinerary();
+            newFlightItinerary.setFlights(resultFlights);
+            allItinerary.add(newFlightItinerary);
+            return;
+        }
 
         for(Flight flight: currentAirport.getFlights()){
-            Airport newCurrentAirport = airports.getAirport(flight.getDestinationCity());
-            System.out.println("DFS-From: "+currentAirport.getName()+" DFS-To: "+ newCurrentAirport.getName());
+            System.out.println("DFS-From: "+currentAirport.getName()+" : " +" DFS-To: "+ airports.getAirport(flight.getDestinationCity()).getName());
 
-            if(!visited.get(newCurrentAirport) && !newCurrentAirport.equals(finalDestination)) {
-                DFS(newCurrentAirport, newCurrentAirport.getFlights(), finalDestination);
+            resultFlights.add(flight);
+            DFSRec(airports.getAirport(flight.getDestinationCity()), finalDestination, resultFlights, allItinerary);
 
-            }else if(!visited.get(newCurrentAirport) && newCurrentAirport.equals(finalDestination)){
-                visited.put(currentAirport, false);
-                System.out.println("FOUNT IT "+newCurrentAirport.getName());
-
-            }
+            resultFlights.remove(resultFlights.size()-1);
+            visited.put(airports.getAirport(flight.getDestinationCity()), false);
         }
     }
 

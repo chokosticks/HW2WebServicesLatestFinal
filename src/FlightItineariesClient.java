@@ -2,6 +2,8 @@
  * Created by antondahlin on 2016-02-08.
  **/
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import flightitinearies.ns.*;
 import flightitinearies.ns.Flight;
@@ -25,9 +27,19 @@ public class FlightItineariesClient {
             }else{
 
                 for(FlightItinerary fi: result) {
+                    System.out.println("[Itinerary]\n");
                     for(Flight fl: fi.getFlights()){
-                        System.out.println(fl.toString());
+                        StringBuilder sb = new StringBuilder();
+                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        sb.append("From: "+fl.getDepartureCity()+"\n").
+                                append("To: "+fl.getDestinationCity()+"\n").
+                                append("Price: "+fl.getPrice()+" \nDeparture date: "+fl.getDepartureDate()+"\n").
+                                append("Available seats: "+fl.getAvailableSeats()+"\n");
+
+                        System.out.println(sb.toString()+"\n");
+
                     }
+                    System.out.println("\n\n");
                 }
             }
 

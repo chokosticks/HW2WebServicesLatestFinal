@@ -5,12 +5,14 @@ import java.util.Random;
 /**
  * Created by antondahlin on 2016-02-12.
  */
+
 @WebServiceProvider
 public class FlightItinerary {
 
-    private static int id;
-    private static ArrayList<Flight> flights;
+    private int id;
+    private ArrayList<Flight> flights = new ArrayList<>();
     private int price =0;
+
 
     public FlightItinerary(ArrayList<Flight> flights)
     {
@@ -26,7 +28,8 @@ public class FlightItinerary {
 
 
     public void setFlights(ArrayList<Flight> flights) {
-        this.flights = flights;
+        this.flights.clear();
+        this.flights.addAll(flights);
         price = 0;
         for(Flight f: flights)
         {

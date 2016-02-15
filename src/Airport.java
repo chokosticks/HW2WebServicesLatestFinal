@@ -19,6 +19,15 @@ public class Airport {
         this.flights = flights;
     }
 
+    public Flight getFlight(String departureCity, String destinationCity){
+        Flight temp = new Flight();
+        for(Flight flight: flights){
+            if(flight.getDepartureCity().equals(departureCity) && flight.getDestinationCity().equals(destinationCity)){
+                temp = flight;
+            }
+        }
+        return temp;
+    }
 
     public String getName() {
         return name;
