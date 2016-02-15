@@ -1,14 +1,12 @@
-import wsdl.mynamespace.wsdl.authservice.AuthPortType;
-import wsdl.mynamespace.wsdl.authservice.AuthService;
+import mynamespace.wsdl.authservice.AuthPortType;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
 
 /**
  * Created by antondahlin on 2016-02-15.
  */
 
-public class AuthServiceImpl implements AuthPortType {
+public class AuthServiceImpl implements AuthPortType
+{
 
     private String userName = "webservice";
     private String password = "password";

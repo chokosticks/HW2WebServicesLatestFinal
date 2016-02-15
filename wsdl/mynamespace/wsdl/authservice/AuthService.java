@@ -19,7 +19,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AuthService", targetNamespace = "http://mynamespace/wsdl/AuthService", wsdlLocation = "file:/Users/antondahlin/IdeaProjects/HW2WebServicesLatest/wsdl/AuthService.wsdl")
+@WebServiceClient(name = "AuthService", targetNamespace = "http://mynamespace/wsdl/AuthService", wsdlLocation = "file:/D:/Workspace/Github/HW2WebServicesLatestFinal/wsdl/AuthService.wsdl")
 public class AuthService
     extends Service
 {
@@ -32,7 +32,7 @@ public class AuthService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/antondahlin/IdeaProjects/HW2WebServicesLatest/wsdl/AuthService.wsdl");
+            url = new URL("file:/D:/Workspace/Github/HW2WebServicesLatestFinal/wsdl/AuthService.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

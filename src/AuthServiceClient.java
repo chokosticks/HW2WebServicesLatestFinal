@@ -1,5 +1,8 @@
-import wsdl.mynamespace.wsdl.authservice.AuthPortType;
-import wsdl.mynamespace.wsdl.authservice.AuthService;
+//import wsdl.mynamespace.wsdl.authservice.AuthPortType;
+//import wsdl.mynamespace.wsdl.authservice.AuthService;
+
+import mynamespace.wsdl.authservice.AuthPortType;
+import mynamespace.wsdl.authservice.AuthService;
 
 
 /**
