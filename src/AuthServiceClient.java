@@ -1,6 +1,7 @@
 import wsdl.mynamespace.wsdl.authservice.AuthPortType;
 import wsdl.mynamespace.wsdl.authservice.AuthService;
 
+
 /**
  * Created by antondahlin on 2016-02-14.
  */
@@ -14,5 +15,4 @@ public class AuthServiceClient {
 
         System.out.println(port.authorize("Anton", "password"));
     }
-
 }
