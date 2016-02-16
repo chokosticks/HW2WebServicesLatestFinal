@@ -52,24 +52,6 @@ public interface FlightItinearies {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "authorize", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.Authorize")
-    @ResponseWrapper(localName = "authorizeResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.AuthorizeResponse")
-    @Action(input = "ns.flightItinearies/FlightItinearies/authorizeRequest", output = "ns.flightItinearies/FlightItinearies/authorizeResponse")
-    public String authorize(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "bookItinerary", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.BookItinerary")
     @ResponseWrapper(localName = "bookItineraryResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.BookItineraryResponse")
     @Action(input = "ns.flightItinearies/FlightItinearies/bookItineraryRequest", output = "ns.flightItinearies/FlightItinearies/bookItineraryResponse")
@@ -108,5 +90,23 @@ public interface FlightItinearies {
     public List<Flight> getFlightPrices(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "authorize", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.Authorize")
+    @ResponseWrapper(localName = "authorizeResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.AuthorizeResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/authorizeRequest", output = "ns.flightItinearies/FlightItinearies/authorizeResponse")
+    public String authorize(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
 }

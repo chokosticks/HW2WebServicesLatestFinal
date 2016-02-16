@@ -29,6 +29,8 @@ public class FlightItineariesClient {
                 System.out.println("1. Authenticate.");
                 System.out.println("2. Search for flights between two cities. \n3. See prices of all flights departing on a date.");
                 System.out.println("4. Booking.");
+                System.out.println("5. Tickets");
+                System.out.println("9. Exit");
                 input = scanner.nextInt();
                 switch(input)
                 {
@@ -45,6 +47,7 @@ public class FlightItineariesClient {
 //                        System.out.println(auth);
 //                        System.out.println(port.authorize("Anton", "dinmama"));
 //>>>>>>> github1/master
+                        authorize();
                         break;
                     case 2:
                         searchFlights();
@@ -67,6 +70,17 @@ public class FlightItineariesClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void authorize()
+    {
+        System.out.println("<username> <password>");
+        String in = scanner.nextLine();
+        in = scanner.nextLine();
+        FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
+
+        String result = port.authorize(in.split(" ")[0], in.split(" ")[1]);
+        System.out.println(result);
     }
 
     private static void tickets()
