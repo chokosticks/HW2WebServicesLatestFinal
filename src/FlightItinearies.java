@@ -25,6 +25,7 @@ public class FlightItinearies {
     private static ArrayList<Booking> bookedItinearies = new ArrayList<>();
     private static String username = "webservice";
     private static String password = "password";
+    private static boolean authorized = false;
 
     public FlightItinearies(){
         System.out.println("Flight Itinearies Service Started");
@@ -34,30 +35,37 @@ public class FlightItinearies {
     @WebMethod
     public String authorize(String username, String password){
         if(username.equals(username) && password.equals(password))
+        {
+            authorized = true;
             return "ABCJL8769xzvf";
+        }
         else
+            authorized = false;
             return "Wrong credentials";
     }
 
 
     @WebMethod
     public List<FlightItinerary> getFlightItinearies(String departureCity, String destinationCity){
+        ArrayList<FlightItinerary> result = null;
+        if(authorized)
+        {
+            result = new ArrayList<FlightItinerary>();
 
-        ArrayList<FlightItinerary> result = new ArrayList<FlightItinerary>();
+            if(!airports.airportExists(destinationCity) || !airports.airportExists(departureCity)) {
+                System.out.println("Non existing airport specified");
+                return result;
+            }
 
-        if(!airports.airportExists(destinationCity) || !airports.airportExists(departureCity)) {
-            System.out.println("Non existing airport specified");
-            return result;
-        }
+            Airport finalDestination = airports.getAirport(destinationCity);
+            Airport departureAirport = airports.getAirport(departureCity);
 
-        Airport finalDestination = airports.getAirport(destinationCity);
-        Airport departureAirport = airports.getAirport(departureCity);
+            initDFSVisit();
 
-        initDFSVisit();
-
-        result = DFS(departureAirport, finalDestination);
-        itineraryResult = result;
-        setItineraryId();
+            result = DFS(departureAirport, finalDestination);
+            itineraryResult = result;
+            setItineraryId();
+            }
         return result;
     }
 
@@ -73,24 +81,28 @@ public class FlightItinearies {
     @WebMethod
     public List<Flight> getFlightPrices(String date)
     {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = new Date();
-        try
+        List<Flight> resultList = null;
+        if(authorized)
         {
-            d =df.parse(date);
-        } catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        List<Flight> resultList = new ArrayList<Flight>();
-        for(Airport a: airports.getAirports())
-        {
-            for(Flight f: a.getFlights())
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = new Date();
+            try
             {
-                if(df.format(d).equals(df.format(f.getDepartureDate())))
+                d = df.parse(date);
+            } catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+            resultList = new ArrayList<Flight>();
+            for (Airport a : airports.getAirports())
+            {
+                for (Flight f : a.getFlights())
                 {
-                    resultList.add(f);
-                    System.out.println(f.toString());
+                    if (df.format(d).equals(df.format(f.getDepartureDate())))
+                    {
+                        resultList.add(f);
+                        System.out.println(f.toString());
+                    }
                 }
             }
         }
@@ -99,27 +111,43 @@ public class FlightItinearies {
 
     @WebMethod
     public String bookItinerary(int id, int creditCardNumber){
-        if(id < itineraryResult.size()) {
-            bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
-            String from, to="";
-            Booking booking = bookedItinearies.get(bookedItinearies.size()-1);
-            from = booking.getItinerary().getFlights().get(0).getDepartureCity();
-            to = booking.getItinerary().getFlights().get(booking.getItinerary().getFlights().size()-1).getDestinationCity();
-            return "Booking succeeded for flight itinerary id: " + id + " from " + from + " to " + to + " for " + booking.getItinerary().getPrice();
-        }else
-            return "No itinerary with that id exists";
+
+        if(authorized)
+        {
+            if (id < itineraryResult.size())
+            {
+                bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
+                String from, to = "";
+                Booking booking = bookedItinearies.get(bookedItinearies.size() - 1);
+                from = booking.getItinerary().getFlights().get(0).getDepartureCity();
+                to = booking.getItinerary().getFlights().get(booking.getItinerary().getFlights().size() - 1).getDestinationCity();
+                return "Booking succeeded for flight itinerary id: " + id + " from " + from + " to " + to + " for " + booking.getItinerary().getPrice();
+            } else
+                return "No itinerary with that id exists";
+        }
+        else
+        {
+            return "User is not authorized";
+        }
     }
 
     @WebMethod
     public String issueTickets(int creditCardNumber){
-        int itineraryID = 0;
-        for(Booking booking: bookedItinearies){
-            if(booking.getCreditCardNumber() == creditCardNumber){
-                return "Tickets issued for itinerary id: "+booking.getItinerary().getId();
+        if(authorized)
+        {
+            int itineraryID = 0;
+            for (Booking booking : bookedItinearies)
+            {
+                if (booking.getCreditCardNumber() == creditCardNumber)
+                {
+                    return "Tickets issued for itinerary id: " + booking.getItinerary().getId();
 
+                }
             }
+            return "No booking found for your creditcard number";
         }
-        return "No booking found for your creditcard number";
+        else
+            return "User is not authorized";
     }
 
     private void initDFSVisit(){

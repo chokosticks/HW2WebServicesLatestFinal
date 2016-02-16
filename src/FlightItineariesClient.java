@@ -100,7 +100,11 @@ public class FlightItineariesClient {
         in = scanner.nextLine();
         flightitinearies.ns.FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
         List<Flight> result = port.getFlightPrices(in);
-
+        if(result == null)
+        {
+            System.out.println("User is not authorized");
+            return;
+        }
         if(result.isEmpty()) {
             System.out.println("No itinerary found");
         }else{
@@ -121,6 +125,11 @@ public class FlightItineariesClient {
         in = scanner.nextLine();
         List<FlightItinerary> result = port.getFlightItinearies(in.split(" ")[0], in.split(" ")[1]);
 
+        if(result == null)
+        {
+            System.out.println("User is not authorized");
+            return;
+        }
         if(result.isEmpty()) {
             System.out.println("No itinerary found");
         }else{
