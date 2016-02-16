@@ -1,5 +1,5 @@
-import mynamespace.wsdl.authservice.AuthService;
-import mynamespace.wsdl.authservice.ObjectFactory;
+//import flightitinearies.ns.AuthService;
+import flightitinearies.ns.ObjectFactory;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
@@ -98,9 +98,10 @@ public class FlightItinearies {
     }
 
     @WebMethod
-    public String bookItinerary(int id, int creditCardNumber){
+    public String bookItinerary(int id, int creditCardNumber, String username){
         if(id < itineraryResult.size()) {
             bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
+            itineraryResult.get(id).setBookedBy(username);
             String from, to="";
             Booking booking = bookedItinearies.get(bookedItinearies.size()-1);
             from = booking.getItinerary().getFlights().get(0).getDepartureCity();
@@ -115,8 +116,6 @@ public class FlightItinearies {
         int itineraryID = 0;
         for(Booking booking: bookedItinearies){
             if(booking.getCreditCardNumber() == creditCardNumber){
-
-
                 return "Tickets issued for itinerary id: "+booking.getItinerary().getId();
 
             }

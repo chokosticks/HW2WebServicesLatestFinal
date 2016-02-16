@@ -45,21 +45,25 @@ public interface FlightItinearies {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns java.util.List<flightitinearies.ns.Flight>
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getFlightPrices", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPrices")
-    @ResponseWrapper(localName = "getFlightPricesResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPricesResponse")
-    @Action(input = "ns.flightItinearies/FlightItinearies/getFlightPricesRequest", output = "ns.flightItinearies/FlightItinearies/getFlightPricesResponse")
-    public List<Flight> getFlightPrices(
+    @RequestWrapper(localName = "authorize", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.Authorize")
+    @ResponseWrapper(localName = "authorizeResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.AuthorizeResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/authorizeRequest", output = "ns.flightItinearies/FlightItinearies/authorizeResponse")
+    public String authorize(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return
@@ -74,7 +78,9 @@ public interface FlightItinearies {
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
     /**
      * 
@@ -90,5 +96,20 @@ public interface FlightItinearies {
     public String issueTickets(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<flightitinearies.ns.Flight>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getFlightPrices", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPrices")
+    @ResponseWrapper(localName = "getFlightPricesResponse", targetNamespace = "ns.flightItinearies", className = "flightitinearies.ns.GetFlightPricesResponse")
+    @Action(input = "ns.flightItinearies/FlightItinearies/getFlightPricesRequest", output = "ns.flightItinearies/FlightItinearies/getFlightPricesResponse")
+    public List<Flight> getFlightPrices(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
 }

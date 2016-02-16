@@ -27,6 +27,8 @@ public class ObjectFactory {
     private final static QName _IssueTicketsResponse_QNAME = new QName("ns.flightItinearies", "issueTicketsResponse");
     private final static QName _BookItineraryResponse_QNAME = new QName("ns.flightItinearies", "bookItineraryResponse");
     private final static QName _IssueTickets_QNAME = new QName("ns.flightItinearies", "issueTickets");
+    private final static QName _Authorize_QNAME = new QName("ns.flightItinearies", "authorize");
+    private final static QName _AuthorizeResponse_QNAME = new QName("ns.flightItinearies", "authorizeResponse");
     private final static QName _GetFlightItineariesResponse_QNAME = new QName("ns.flightItinearies", "getFlightItineariesResponse");
     private final static QName _BookItinerary_QNAME = new QName("ns.flightItinearies", "bookItinerary");
     private final static QName _GetFlightItinearies_QNAME = new QName("ns.flightItinearies", "getFlightItinearies");
@@ -89,6 +91,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Authorize }
+     * 
+     */
+    public Authorize createAuthorize() {
+        return new Authorize();
+    }
+
+    /**
+     * Create an instance of {@link AuthorizeResponse }
+     * 
+     */
+    public AuthorizeResponse createAuthorizeResponse() {
+        return new AuthorizeResponse();
+    }
+
+    /**
      * Create an instance of {@link GetFlightItineariesResponse }
      * 
      */
@@ -145,6 +163,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "ns.flightItinearies", name = "issueTickets")
     public JAXBElement<IssueTickets> createIssueTickets(IssueTickets value) {
         return new JAXBElement<IssueTickets>(_IssueTickets_QNAME, IssueTickets.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Authorize }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "ns.flightItinearies", name = "authorize")
+    public JAXBElement<Authorize> createAuthorize(Authorize value) {
+        return new JAXBElement<Authorize>(_Authorize_QNAME, Authorize.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AuthorizeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "ns.flightItinearies", name = "authorizeResponse")
+    public JAXBElement<AuthorizeResponse> createAuthorizeResponse(AuthorizeResponse value) {
+        return new JAXBElement<AuthorizeResponse>(_AuthorizeResponse_QNAME, AuthorizeResponse.class, null, value);
     }
 
     /**

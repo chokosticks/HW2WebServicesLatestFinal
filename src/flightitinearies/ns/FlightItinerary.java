@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="bookedBy" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="flights" type="{ns.flightItinearies}flight" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="totalPrice" type="{http://www.w3.org/2001/XMLSchema}double"/>
@@ -32,16 +33,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "flightItinerary", propOrder = {
+    "bookedBy",
     "flights",
     "id",
     "totalPrice"
 })
 public class FlightItinerary {
 
+    protected String bookedBy;
     @XmlElement(nillable = true)
     protected List<Flight> flights;
     protected int id;
     protected double totalPrice;
+
+    /**
+     * Gets the value of the bookedBy property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBookedBy() {
+        return bookedBy;
+    }
+
+    /**
+     * Sets the value of the bookedBy property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBookedBy(String value) {
+        this.bookedBy = value;
+    }
 
     /**
      * Gets the value of the flights property.

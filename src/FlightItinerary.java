@@ -13,6 +13,7 @@ public class FlightItinerary {
     private ArrayList<Flight> flights = new ArrayList<>();
     private int price = 0;
     private double totalPrice = 0;
+    private String bookedBy = "";
 
 
     public FlightItinerary(ArrayList<Flight> flights)
@@ -20,6 +21,7 @@ public class FlightItinerary {
         setFlights(flights);
         Random r = new Random();
         id = r.nextInt(9999-1000+1) + 1000;
+
     }
 
     public FlightItinerary()
@@ -69,5 +71,15 @@ public class FlightItinerary {
 
     public void setTotalPrice(double totalPrice){
         this.totalPrice = totalPrice;
+    }
+
+    public void setBookedBy(String username)
+    {
+        bookedBy = username;
+    }
+
+    public String getBookedBy()
+    {
+        return bookedBy;
     }
 }

@@ -11,14 +11,15 @@ import flightitinearies.ns.*;
 import flightitinearies.ns.Flight;
 import flightitinearies.ns.FlightItinearies;
 import flightitinearies.ns.FlightItinerary;
-import mynamespace.wsdl.authservice.AuthPortType;
-import mynamespace.wsdl.authservice.AuthRequest;
-import mynamespace.wsdl.authservice.AuthService;
+//import mynamespace.wsdl.authservice.AuthPortType;
+//import mynamespace.wsdl.authservice.AuthRequest;
+//import mynamespace.wsdl.authservice.AuthService;
 
 
 public class FlightItineariesClient {
     static Scanner scanner;
     static String auth="";
+    static String username="";
     public static void main(String[] args) {
         try {
             scanner = new Scanner(System.in);
@@ -75,7 +76,7 @@ public class FlightItineariesClient {
         in = scanner.nextLine();
         FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
 
-        String result = port.bookItinerary(Integer.parseInt(in.split(" ")[0]), Integer.parseInt(in.split(" ")[1]));
+        String result = port.bookItinerary(Integer.parseInt(in.split(" ")[0]), Integer.parseInt(in.split(" ")[1]), username);
         System.out.println(result);
     }
 
