@@ -32,18 +32,18 @@ public class FlightItineariesClient {
                 switch(input)
                 {
                     case 1:
-                        AuthPortType port = (new AuthService()).getAuthPort();
-<<<<<<< HEAD
-//                        AuthRequest auth = new AuthRequest();
-//                        auth.setArg1("webservice");
-//                        auth.setArg0("password");
-//                        port.authorize(auth);
-
-=======
-                        auth = port.authorize("webservice", "password");
-                        System.out.println(auth);
-                        System.out.println(port.authorize("Anton", "dinmama"));
->>>>>>> github1/master
+//                        AuthPortType port = (new AuthService()).getAuthPort();
+////<<<<<<< HEAD
+////                        AuthRequest auth = new AuthRequest();
+////                        auth.setArg1("webservice");
+////                        auth.setArg0("password");
+////                        port.authorize(auth);
+//
+////=======
+//                        auth = port.authorize("webservice", "password");
+//                        System.out.println(auth);
+//                        System.out.println(port.authorize("Anton", "dinmama"));
+//>>>>>>> github1/master
                         break;
                     case 2:
                         searchFlights();

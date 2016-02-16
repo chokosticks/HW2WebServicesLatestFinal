@@ -1,4 +1,5 @@
 import mynamespace.wsdl.authservice.AuthService;
+import mynamespace.wsdl.authservice.ObjectFactory;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
@@ -22,9 +23,20 @@ public class FlightItinearies {
     private static Airports airports = new Airports();
     private static ArrayList<FlightItinerary> itineraryResult = new ArrayList<>();
     private static ArrayList<Booking> bookedItinearies = new ArrayList<>();
+    private static String username = "webservice";
+    private static String password = "password";
 
     public FlightItinearies(){
         System.out.println("Flight Itinearies Service Started");
+    }
+
+
+    @WebMethod
+    public String authorize(String username, String password){
+        if(username.equals(username) && password.equals(password))
+            return "ABCJL8769xzvf";
+        else
+            return "Wrong credentials";
     }
 
 
@@ -156,6 +168,7 @@ public class FlightItinearies {
 
     public static void main(String[] args){
         Endpoint.publish("http://0.0.0.0:1337/FlightItinearies", new FlightItinearies());
-        Endpoint.publish("http://0.0.0.0:1337/AuthService", new AuthServiceImpl());
+//        Endpoint.publish("http://0.0.0.0:1337/AuthService", new AuthServiceImpl());
+
     }
 }

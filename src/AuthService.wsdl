@@ -52,7 +52,7 @@
     <service name="AuthService">
         <documentation> WSDL File for AuthService</documentation>
         <port binding="tns:AuthBinding" name="AuthPort">
-            <soap:address location="http://0.0.0.0:1337/FlightItinearies"/>
+            <soap:address location="http://0.0.0.0:1337/AuthService"/>
         </port>
     </service>
 </definitions>
