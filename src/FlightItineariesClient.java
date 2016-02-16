@@ -55,7 +55,9 @@ public class FlightItineariesClient {
                     case 4:
                         booking();
                         break;
-
+                    case 5:
+                        tickets();
+                        break;
 
                     case 9:
                         System.exit(0);
@@ -65,6 +67,17 @@ public class FlightItineariesClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void tickets()
+    {
+        System.out.println("<credit card number>");
+        String in = scanner.nextLine();
+        in = scanner.nextLine();
+        FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
+        String result = port.issueTickets(Integer.parseInt(in));
+
+        System.out.println(result);
     }
 
 
