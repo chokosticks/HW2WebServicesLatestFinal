@@ -76,7 +76,7 @@ public class FlightItineariesClient {
         in = scanner.nextLine();
         FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
 
-        String result = port.bookItinerary(Integer.parseInt(in.split(" ")[0]), Integer.parseInt(in.split(" ")[1]), username);
+        String result = port.bookItinerary(Integer.parseInt(in.split(" ")[0]), Integer.parseInt(in.split(" ")[1]));
         System.out.println(result);
     }
 

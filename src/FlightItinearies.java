@@ -98,10 +98,9 @@ public class FlightItinearies {
     }
 
     @WebMethod
-    public String bookItinerary(int id, int creditCardNumber, String username){
+    public String bookItinerary(int id, int creditCardNumber){
         if(id < itineraryResult.size()) {
             bookedItinearies.add(new Booking(creditCardNumber, itineraryResult.get(id)));
-            itineraryResult.get(id).setBookedBy(username);
             String from, to="";
             Booking booking = bookedItinearies.get(bookedItinearies.size()-1);
             from = booking.getItinerary().getFlights().get(0).getDepartureCity();

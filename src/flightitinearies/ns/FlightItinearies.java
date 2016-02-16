@@ -63,7 +63,6 @@ public interface FlightItinearies {
 
     /**
      * 
-     * @param arg2
      * @param arg1
      * @param arg0
      * @return
@@ -78,9 +77,7 @@ public interface FlightItinearies {
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        int arg1);
 
     /**
      * 
