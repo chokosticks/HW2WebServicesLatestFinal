@@ -18,6 +18,7 @@ import mynamespace.wsdl.authservice.AuthService;
 
 public class FlightItineariesClient {
     static Scanner scanner;
+    static String auth="";
     public static void main(String[] args) {
         try {
             scanner = new Scanner(System.in);
@@ -26,16 +27,23 @@ public class FlightItineariesClient {
             {
                 System.out.println("1. Authenticate.");
                 System.out.println("2. Search for flights between two cities. \n3. See prices of all flights departing on a date.");
+                System.out.println("4. Booking.");
                 input = scanner.nextInt();
                 switch(input)
                 {
                     case 1:
                         AuthPortType port = (new AuthService()).getAuthPort();
-                        AuthRequest auth = new AuthRequest();
-                        auth.setArg1("webservice");
-                        auth.setArg0("password");
-                        port.authorize(auth);
+<<<<<<< HEAD
+//                        AuthRequest auth = new AuthRequest();
+//                        auth.setArg1("webservice");
+//                        auth.setArg0("password");
+//                        port.authorize(auth);
 
+=======
+                        auth = port.authorize("webservice", "password");
+                        System.out.println(auth);
+                        System.out.println(port.authorize("Anton", "dinmama"));
+>>>>>>> github1/master
                         break;
                     case 2:
                         searchFlights();
@@ -44,7 +52,7 @@ public class FlightItineariesClient {
                         flightsOnDate();
                         break;
                     case 4:
-
+                        booking();
                         break;
 
 
@@ -59,6 +67,17 @@ public class FlightItineariesClient {
     }
 
 
+
+    private static void booking()
+    {
+        System.out.println("<itinerary ID> <credit card number>");
+        String in = scanner.nextLine();
+        in = scanner.nextLine();
+        FlightItinearies port = (new FlightItineariesService()).getFlightItineariesPort();
+
+        String result = port.bookItinerary(Integer.parseInt(in.split(" ")[0]), Integer.parseInt(in.split(" ")[1]));
+        System.out.println(result);
+    }
 
     private static void flightsOnDate()
     {
