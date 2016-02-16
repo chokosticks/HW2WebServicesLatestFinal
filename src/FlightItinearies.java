@@ -1,3 +1,5 @@
+import mynamespace.wsdl.authservice.AuthService;
+
 import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -103,21 +105,21 @@ public class FlightItinearies {
         return "No booking found for your creditcard number";
     }
 
-    public void initDFSVisit(){
+    private void initDFSVisit(){
         for(Airport airport: airports.getAirports()){
             visited.put(airport,false);
         }
     }
 
 
-    public ArrayList<FlightItinerary> DFS(Airport currentAirport, Airport finalDestination){
+    private ArrayList<FlightItinerary> DFS(Airport currentAirport, Airport finalDestination){
         ArrayList<Flight> resultFlights = new ArrayList<>();
         ArrayList<FlightItinerary> allItinerary = new ArrayList<>();
         DFSRec(currentAirport, finalDestination, resultFlights, allItinerary);
         return allItinerary;
     }
 
-    public void DFSRec(Airport currentAirport, Airport finalDestination, ArrayList<Flight> resultFlights, ArrayList<FlightItinerary> allItinerary){
+    private void DFSRec(Airport currentAirport, Airport finalDestination, ArrayList<Flight> resultFlights, ArrayList<FlightItinerary> allItinerary){
 
         if(visited.get(currentAirport)){
             return;
@@ -147,5 +149,6 @@ public class FlightItinearies {
 
     public static void main(String[] args){
         Endpoint.publish("http://0.0.0.0:1337/FlightItinearies", new FlightItinearies());
+        Endpoint.publish("http://0.0.0.0:1337/AuthService", new AuthServiceImpl());
     }
 }

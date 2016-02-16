@@ -25,49 +25,19 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _IssueTicketsResponse_QNAME = new QName("ns.flightItinearies", "issueTicketsResponse");
-    private final static QName _DFSRecResponse_QNAME = new QName("ns.flightItinearies", "DFSRecResponse");
     private final static QName _BookItineraryResponse_QNAME = new QName("ns.flightItinearies", "bookItineraryResponse");
     private final static QName _IssueTickets_QNAME = new QName("ns.flightItinearies", "issueTickets");
-    private final static QName _InitDFSVisit_QNAME = new QName("ns.flightItinearies", "initDFSVisit");
+    private final static QName _GetFlightItineariesResponse_QNAME = new QName("ns.flightItinearies", "getFlightItineariesResponse");
     private final static QName _BookItinerary_QNAME = new QName("ns.flightItinearies", "bookItinerary");
     private final static QName _GetFlightItinearies_QNAME = new QName("ns.flightItinearies", "getFlightItinearies");
     private final static QName _GetFlightPricesResponse_QNAME = new QName("ns.flightItinearies", "getFlightPricesResponse");
-    private final static QName _DFS_QNAME = new QName("ns.flightItinearies", "DFS");
-    private final static QName _InitDFSVisitResponse_QNAME = new QName("ns.flightItinearies", "initDFSVisitResponse");
     private final static QName _GetFlightPrices_QNAME = new QName("ns.flightItinearies", "getFlightPrices");
-    private final static QName _DFSRec_QNAME = new QName("ns.flightItinearies", "DFSRec");
-    private final static QName _GetFlightItineariesResponse_QNAME = new QName("ns.flightItinearies", "getFlightItineariesResponse");
-    private final static QName _DFSResponse_QNAME = new QName("ns.flightItinearies", "DFSResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: flightitinearies.ns
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link DFSResponse }
-     * 
-     */
-    public DFSResponse createDFSResponse() {
-        return new DFSResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetFlightItineariesResponse }
-     * 
-     */
-    public GetFlightItineariesResponse createGetFlightItineariesResponse() {
-        return new GetFlightItineariesResponse();
-    }
-
-    /**
-     * Create an instance of {@link DFS }
-     * 
-     */
-    public DFS createDFS() {
-        return new DFS();
     }
 
     /**
@@ -87,14 +57,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DFSRec }
-     * 
-     */
-    public DFSRec createDFSRec() {
-        return new DFSRec();
-    }
-
-    /**
      * Create an instance of {@link GetFlightPrices }
      * 
      */
@@ -103,27 +65,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InitDFSVisitResponse }
-     * 
-     */
-    public InitDFSVisitResponse createInitDFSVisitResponse() {
-        return new InitDFSVisitResponse();
-    }
-
-    /**
      * Create an instance of {@link BookItineraryResponse }
      * 
      */
     public BookItineraryResponse createBookItineraryResponse() {
         return new BookItineraryResponse();
-    }
-
-    /**
-     * Create an instance of {@link DFSRecResponse }
-     * 
-     */
-    public DFSRecResponse createDFSRecResponse() {
-        return new DFSRecResponse();
     }
 
     /**
@@ -143,11 +89,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InitDFSVisit }
+     * Create an instance of {@link GetFlightItineariesResponse }
      * 
      */
-    public InitDFSVisit createInitDFSVisit() {
-        return new InitDFSVisit();
+    public GetFlightItineariesResponse createGetFlightItineariesResponse() {
+        return new GetFlightItineariesResponse();
     }
 
     /**
@@ -175,29 +121,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Airport }
-     * 
-     */
-    public Airport createAirport() {
-        return new Airport();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link IssueTicketsResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "ns.flightItinearies", name = "issueTicketsResponse")
     public JAXBElement<IssueTicketsResponse> createIssueTicketsResponse(IssueTicketsResponse value) {
         return new JAXBElement<IssueTicketsResponse>(_IssueTicketsResponse_QNAME, IssueTicketsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DFSRecResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFSRecResponse")
-    public JAXBElement<DFSRecResponse> createDFSRecResponse(DFSRecResponse value) {
-        return new JAXBElement<DFSRecResponse>(_DFSRecResponse_QNAME, DFSRecResponse.class, null, value);
     }
 
     /**
@@ -219,12 +148,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InitDFSVisit }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightItineariesResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "initDFSVisit")
-    public JAXBElement<InitDFSVisit> createInitDFSVisit(InitDFSVisit value) {
-        return new JAXBElement<InitDFSVisit>(_InitDFSVisit_QNAME, InitDFSVisit.class, null, value);
+    @XmlElementDecl(namespace = "ns.flightItinearies", name = "getFlightItineariesResponse")
+    public JAXBElement<GetFlightItineariesResponse> createGetFlightItineariesResponse(GetFlightItineariesResponse value) {
+        return new JAXBElement<GetFlightItineariesResponse>(_GetFlightItineariesResponse_QNAME, GetFlightItineariesResponse.class, null, value);
     }
 
     /**
@@ -255,57 +184,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DFS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFS")
-    public JAXBElement<DFS> createDFS(DFS value) {
-        return new JAXBElement<DFS>(_DFS_QNAME, DFS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InitDFSVisitResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "initDFSVisitResponse")
-    public JAXBElement<InitDFSVisitResponse> createInitDFSVisitResponse(InitDFSVisitResponse value) {
-        return new JAXBElement<InitDFSVisitResponse>(_InitDFSVisitResponse_QNAME, InitDFSVisitResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightPrices }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "ns.flightItinearies", name = "getFlightPrices")
     public JAXBElement<GetFlightPrices> createGetFlightPrices(GetFlightPrices value) {
         return new JAXBElement<GetFlightPrices>(_GetFlightPrices_QNAME, GetFlightPrices.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DFSRec }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFSRec")
-    public JAXBElement<DFSRec> createDFSRec(DFSRec value) {
-        return new JAXBElement<DFSRec>(_DFSRec_QNAME, DFSRec.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightItineariesResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "getFlightItineariesResponse")
-    public JAXBElement<GetFlightItineariesResponse> createGetFlightItineariesResponse(GetFlightItineariesResponse value) {
-        return new JAXBElement<GetFlightItineariesResponse>(_GetFlightItineariesResponse_QNAME, GetFlightItineariesResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DFSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "ns.flightItinearies", name = "DFSResponse")
-    public JAXBElement<DFSResponse> createDFSResponse(DFSResponse value) {
-        return new JAXBElement<DFSResponse>(_DFSResponse_QNAME, DFSResponse.class, null, value);
     }
 
 }

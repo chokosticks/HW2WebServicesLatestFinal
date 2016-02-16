@@ -12,6 +12,7 @@ import flightitinearies.ns.Flight;
 import flightitinearies.ns.FlightItinearies;
 import flightitinearies.ns.FlightItinerary;
 import mynamespace.wsdl.authservice.AuthPortType;
+import mynamespace.wsdl.authservice.AuthRequest;
 import mynamespace.wsdl.authservice.AuthService;
 
 
@@ -30,9 +31,11 @@ public class FlightItineariesClient {
                 {
                     case 1:
                         AuthPortType port = (new AuthService()).getAuthPort();
+                        AuthRequest auth = new AuthRequest();
+                        auth.setArg1("webservice");
+                        auth.setArg0("password");
+                        port.authorize(auth);
 
-                        System.out.println(port.authorize("webservice", "password"));
-                        System.out.println(port.authorize("Anton", "dinmama"));
                         break;
                     case 2:
                         searchFlights();
@@ -50,14 +53,9 @@ public class FlightItineariesClient {
                         break;
                 }
             }
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -95,7 +93,7 @@ public class FlightItineariesClient {
         }else{
 
             for(FlightItinerary fi: result) {
-                System.out.println("[Itinerary]\n");
+                System.out.println("[ItineraryID: "+fi.getId()+ "]\n");
                 for(Flight fl: fi.getFlights()){
                     StringBuilder sb = new StringBuilder();
                     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

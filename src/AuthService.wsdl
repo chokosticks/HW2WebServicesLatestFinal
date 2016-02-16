@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="AuthService"
+             targetNamespace="http://mynamespace/wsdl/AuthService"
+             xmlns:tns="http://mynamespace/wsdl/AuthService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+    <types>
+        <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://mynamespace/wsdl/AuthService" >
+            <complexType name="authRequest">
+                <sequence>
+                    <element name="arg0" type="xsd:string"/>
+                    <element name="arg1" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <element name="authRequest" type="tns:authRequest" />
+
+            <complexType name="authResponse">
+                <sequence>
+                    <element name="return" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="authResponse" type="tns:authResponse"/>
+        </xsd:schema>
+    </types>
+
+    <message name="authRequest">
+        <part name="credentials" element="tns:authRequest"/>
+    </message>
+    <message name="authResponse">
+        <part name="authToken" element="tns:authResponse"/>
+    </message>
+    <portType name="AuthPortType">
+        <operation name="authorize">
+            <input name="authRequest" message="tns:authRequest"/>
+            <output name="authResponse" message="tns:authResponse"/>
+        </operation>
+    </portType>
+    <binding name="AuthBinding" type="tns:AuthPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="authorize">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="AuthService">
+        <documentation> WSDL File for AuthService</documentation>
+        <port binding="tns:AuthBinding" name="AuthPort">
+            <soap:address location="http://0.0.0.0:1337/FlightItinearies"/>
+        </port>
+    </service>
+</definitions>
